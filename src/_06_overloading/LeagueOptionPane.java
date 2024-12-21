@@ -1,5 +1,6 @@
 package _06_overloading;
 
+import java.awt.Color;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -16,14 +17,47 @@ import javax.swing.JPanel;
  * GOAL: Create your own custom pop-up messages
  */
 public class LeagueOptionPane {
+
 	
 	public static void showMessageDialog(String message) {
 		// 1. Open example.png and make a GUI that looks like that
 		//    The message parameter is what we want to show on our pop-up
+		JFrame frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		ImageIcon image = loadImage("example.png");
+		JLabel label = new JLabel(image);
+		label.setText(message);
+		
+		frame.add(label);
+		frame.setVisible(true);
+
 		
 		// 2. Uncomment the line of code below. It sets the location of our frame to the center of the screen
-		//frame.setLocationRelativeTo(null);
+		frame.setLocationRelativeTo(null);
+		frame.pack();
+		
+	}
+	
+	public static void showMessageDialog(String message, String title) {
+		// 1. Open example.png and make a GUI that looks like that
+		//    The message parameter is what we want to show on our pop-up
+		JFrame frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		ImageIcon image = loadImage("example.png");
+		JLabel label = new JLabel(image);
+		label.setText(message);
+		
+		frame.setTitle(title);
+		frame.add(label);
+		frame.setVisible(true);
+
+		
+		// 2. Uncomment the line of code below. It sets the location of our frame to the center of the screen
+		frame.setLocationRelativeTo(null);
+		frame.pack();
+		
 	}
 	
 	// 3. Call this method in the Runner class
@@ -38,8 +72,57 @@ public class LeagueOptionPane {
 	// 6. Create another showMessageDialog() method that lets us choose the Message, Title, and Image
 	//    3 String parameters (one for the message, one for the title, and one for the fileName)
 	
-	// 7. Call this method in the Runner class
+	public static JPanel showMessageDialog(String message, String title, String fileName) {
+		// 1. Open example.png and make a GUI that looks like that
+		//    The message parameter is what we want to show on our pop-up
+		JFrame frame = new JFrame();
+		JPanel panel = new JPanel();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		ImageIcon image = loadImage(fileName);
+		JLabel label = new JLabel(image);
+		label.setText(message);
+		
+		frame.setTitle(title);
+		frame.add(label);
+		frame.add(panel);
+		frame.setVisible(true);
+
+		
+		// 2. Uncomment the line of code below. It sets the location of our frame to the center of the screen
+		frame.setLocationRelativeTo(null);
+		frame.pack();
+		
+		return panel;
+		
+	}
 	
+	// 7. Call this method in the Runner class
+	public static void showMessageDialog(String message, String title, String fileName, Color color) {
+		// 1. Open example.png and make a GUI that looks like that
+		//    The message parameter is what we want to show on our pop-up
+		JFrame frame = new JFrame();
+		JPanel panel = new JPanel();	
+		
+		panel.setBackground(color);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		ImageIcon image = loadImage(fileName);
+		JLabel label = new JLabel(image);
+		label.setText(message);
+		
+		panel.add(label);
+		frame.add(panel);
+		frame.setTitle(title);
+		frame.add(label);
+		frame.setVisible(true);
+
+		
+		// 2. Uncomment the line of code below. It sets the location of our frame to the center of the screen
+		frame.setLocationRelativeTo(null);
+		frame.pack();
+		
+	}
 	// CHALLENGE: 
 		//	1. Create another showMessageDialog() method that lets us choose the Message, Title, Image, and Background Color
 		//     3 String parameters (one for the message, one for the title, and one for the fileName)
